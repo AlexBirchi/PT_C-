@@ -57,3 +57,18 @@ def t_ID(t):
     r'[A-Za-z_][A-Za-z0-9_]*'
     t.type = reserved.get(t.value, 'ID')
     return t
+
+
+# def t_COMMENT(t):
+#     r'/\*(.|\n)*?\*/'
+#     t.lexer.lineno += t.value.count('\n')
+
+
+def t_error(t):
+    print ("Illegal character '%s'" , t.value[0])
+    t.lexer.skip(1)
+
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
